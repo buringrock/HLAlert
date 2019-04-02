@@ -31,15 +31,15 @@ public class HLAlert: NSObject {
         show(title: title, message: message, preferredStyle: .actionSheet, actionTitles: actionTitles, actionStyles: actionStyles, handler: handler);
     }
     
-    private static func show(title: String?, message: String?, preferredStyle: UIAlertControllerStyle,actionTitles : [String],actionStyles : [String]?,handler: ((Int) -> Void)?){
+    private static func show(title: String?, message: String?, preferredStyle: UIAlertController.Style,actionTitles : [String],actionStyles : [String]?,handler: ((Int) -> Void)?){
         let alertViewController = UIAlertController.init(title: title, message: message, preferredStyle: preferredStyle);
         for i in 0..<actionTitles.count {
-            var alertActionStyle = UIAlertActionStyle.default;
+            var alertActionStyle = UIAlertAction.Style.default;
             if let actionStyles = actionStyles,actionStyles.count>i{
                 if actionStyles[i] == actionStyleCancel{
-                    alertActionStyle = UIAlertActionStyle.cancel;
+                    alertActionStyle = UIAlertAction.Style.cancel;
                 }else if actionStyles[i] == actionStyleDestructive {
-                    alertActionStyle = UIAlertActionStyle.destructive;
+                    alertActionStyle = UIAlertAction.Style.destructive;
                 }
             }
             let action = UIAlertAction.init(title: actionTitles[i], style: alertActionStyle, handler: { (a) in
